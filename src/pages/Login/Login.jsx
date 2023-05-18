@@ -2,6 +2,7 @@ import React, { useContext, useState } from 'react';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import logInPic from '../../assets/access-control-system-abstract-concept_335657-3180.avif'
 import { AuthContext } from '../../provider/AuthProvider';
+import GoogleLogIn from '../GoogleLogIn/GoogleLogIn';
 
 const Login = () => {
     const [error, setError] = useState('')
@@ -64,11 +65,23 @@ const Login = () => {
                                 </div>
                                 <h4> Don't Have an Account? <span className='text-primary'><Link to="/register">Register</Link></span></h4>
                             </div>
-
+                            <div className='grid grid-cols-3'>
+                                <div className=' w-36 font-bold border-b-2'></div>
+                                <div className=' text-xl font-bold ml-16'>or</div>
+                                <div className=' w-36 font-bold border-b-2'></div>
+                            </div>
+                            <GoogleLogIn></GoogleLogIn>
                         </form>
                     </div>
                 </div>
+
+
+
+                <div>
+
+                </div>
             </div>
+
         </div>
     );
 };
