@@ -1,8 +1,15 @@
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
 import logo from '../../assets/logo.png'
 import { Link } from 'react-router-dom';
+import { AuthContext } from '../../provider/AuthProvider';
 const Navbar = () => {
     const [isMenuOpen, setIsMenuOpen] = useState(false);
+    const { user, logOut } = useContext(AuthContext);
+    const handleLogOut = () => {
+        logOut()
+            .then()
+            .catch(error => console.log(error));
+    }
     return (
         <div>
             <div className="bg-gray-900">
@@ -51,60 +58,62 @@ const Navbar = () => {
                                 Robot Galaxy
                             </span>
                         </Link>
-                        <ul className="flex hidden items-center space-x-3 lg:flex">
-                            <li>
+
+                        {user ?
+                            <ul className="flex hidden items-center space-x-5 lg:flex">
+                                <li>
+                                    <Link
+                                        to="/myToys"
+                                        aria-label="My Toys"
+                                        title="My Toys"
+                                        className="font-medium tracking-wide text-gray-100 transition-colors duration-200 hover:text-teal-accent-400"
+                                    >
+                                        My Toys
+                                    </Link>
+                                </li>
+                                <li>
+                                    <Link
+                                        to="/addToys"
+                                        aria-label="Add A Toy"
+                                        title="Add A Toy"
+                                        className="font-medium tracking-wide text-gray-100 transition-colors duration-200 hover:text-teal-accent-400"
+                                    >
+                                        Add A Toy
+                                    </Link>
+                                </li>
+                                <li className='h-14 w-14'>
+                                    <Link
+                                        to="/singIn"
+                                        aria-label="Sign in"
+                                        title="Sign in"
+                                        className="font-medium tracking-wide text-gray-100 transition-colors duration-200 hover:text-teal-accent-400"
+                                    >
+                                        <img className="rounded-full" src={logo} alt="" />
+                                    </Link>
+                                </li>
+                                <li onClick={handleLogOut}>
+                                    <Link
+                                        className="inline-flex items-center justify-center h-12 px-6 font-medium tracking-wide text-white transition duration-200 rounded shadow-md bg-purple-600 hover:bg-deep-purple-accent-700 focus:shadow-outline focus:outline-none"
+                                        aria-label="Sign up"
+                                        title="Log Out"
+                                    >
+                                        Log Out
+                                    </Link>
+                                </li>
+                            </ul>
+                            :
+                            <li className="flex hidden items-center space-x-3 ml-24 lg:flex">
                                 <Link
                                     to="/singIn"
                                     aria-label="Sign in"
                                     title="Sign in"
-                                    className="font-medium tracking-wide text-gray-100 transition-colors duration-200 hover:text-teal-accent-400"
+                                    className="inline-flex items-center justify-center h-12 px-6 font-medium tracking-wide text-white transition duration-200 rounded shadow-md bg-purple-600 hover:bg-deep-purple-accent-700 focus:shadow-outline focus:outline-none"
                                 >
                                     Sign in
                                 </Link>
                             </li>
-                            <li>
-                                <Link
-                                    to="/myToys"
-                                    aria-label="My Toys"
-                                    title="My Toys"
-                                    className="font-medium tracking-wide text-gray-100 transition-colors duration-200 hover:text-teal-accent-400"
-                                >
-                                    My Toys
-                                </Link>
-                            </li>
-                            <li>
-                                <Link
-                                    to="/addToys"
-                                    aria-label="Add A Toy"
-                                    title="Add A Toy"
-                                    className="font-medium tracking-wide text-gray-100 transition-colors duration-200 hover:text-teal-accent-400"
-                                >
-                                    Add A Toy
-                                </Link>
-                            </li>
-                            <li className='h-14 w-14'>
-                                <Link
-                                    to="/singIn"
-                                    aria-label="Sign in"
-                                    title="Sign in"
-                                    className="font-medium tracking-wide text-gray-100 transition-colors duration-200 hover:text-teal-accent-400"
-                                >
-                                    <img className="rounded-full" src={logo} alt="" />
-                                </Link>
-                            </li>
-                            <li>
-                                <Link
-                                    to="/register"
-                                    className="inline-flex items-center justify-center h-12 px-6 font-medium tracking-wide text-white transition duration-200 rounded shadow-md bg-purple-600 hover:bg-deep-purple-accent-700 focus:shadow-outline focus:outline-none"
-                                    aria-label="Sign up"
-                                    title="Sign up"
-                                >
-                                    Sign up
-                                </Link>
-                            </li>
-                        </ul>
 
-
+                        }
                         <div className="ml-auto lg:hidden">
                             <button
                                 aria-label="Open Menu"
@@ -192,56 +201,62 @@ const Navbar = () => {
                                                         Blog
                                                     </Link>
                                                 </li>
-                                                <li>
-                                                    <Link
-                                                        to="/singIn"
-                                                        aria-label="Sign in"
-                                                        title="Sign in"
-                                                        className="font-medium tracking-wide text-gray-700 transition-colors duration-200 hover:text-deep-purple-accent-400"
-                                                    >
-                                                        Sign in
-                                                    </Link>
-                                                </li>
-                                                <li>
-                                                    <Link
-                                                        to="myToys"
-                                                        aria-label="My Toys"
-                                                        title="My Toys"
-                                                        className="font-medium tracking-wide text-gray-700 transition-colors duration-200 hover:text-deep-purple-accent-400"
-                                                    >
-                                                        My Toys
-                                                    </Link>
-                                                </li>
-                                                <li>
-                                                    <Link
-                                                        to="addToys"
-                                                        aria-label="Add A Toy"
-                                                        title="Add A Toy"
-                                                        className="font-medium tracking-wide text-gray-700 transition-colors duration-200 hover:text-deep-purple-accent-400"
-                                                    >
-                                                        Add A Toy
-                                                    </Link>
-                                                </li>
-                                                <li className='h-14 w-14'>
-                                                    <Link
-                                                        to="/"
-                                                        aria-label="User"
-                                                        title=""
-                                                        className="font-medium tracking-wide text-gray-100 transition-colors duration-200 hover:text-teal-accent-400"
-                                                    >
-                                                        <img className="rounded-full" src={logo} alt="" />
-                                                    </Link>
-                                                </li>
-                                                <li>
-                                                    <Link
-                                                        to="register"
-                                                        className="inline-flex items-center justify-center w-full h-12 px-6 font-medium tracking-wide text-white transition duration-200 rounded shadow-md bg-purple-400 hover:bg-purple-700 focus:shadow-outline focus:outline-none"
-                                                        aria-label="Sign up"
-                                                        title="Sign up"
-                                                    >
-                                                        Sign up
-                                                    </Link>
-                                                </li>
+
+                                                {user ?
+                                                    <ul className="space-y-4">
+                                                        <li>
+                                                            <Link
+                                                                to="/myToys"
+                                                                aria-label="My Toys"
+                                                                title="My Toys"
+                                                                className="font-medium tracking-wide text-gray-700 transition-colors duration-200 hover:text-deep-purple-accent-400"
+                                                            >
+                                                                My Toys
+                                                            </Link>
+                                                        </li>
+                                                        <li>
+                                                            <Link
+                                                                to="/addToys"
+                                                                aria-label="Add A Toy"
+                                                                title="Add A Toy"
+                                                                className="font-medium tracking-wide text-gray-700 transition-colors duration-200 hover:text-deep-purple-accent-400"
+                                                            >
+                                                                Add A Toy
+                                                            </Link>
+                                                        </li>
+                                                        <li className='h-14 w-14'>
+                                                            <Link
+                                                                to="/singIn"
+                                                                aria-label="Sign in"
+                                                                title="Sign in"
+                                                                className="font-medium tracking-wide text-gray-700 transition-colors duration-200 hover:text-deep-purple-accent-400"
+                                                            >
+                                                                <img className="rounded-full" src={logo} alt="" />
+                                                            </Link>
+                                                        </li>
+                                                        <li onClick={handleLogOut}>
+                                                            <Link
+                                                                className="inline-flex items-center justify-center w-full h-12 px-6 font-medium tracking-wide text-white transition duration-200 rounded shadow-md bg-purple-400 hover:bg-purple-700 focus:shadow-outline focus:outline-none"
+                                                                aria-label="Sign up"
+                                                                title="Log Out"
+                                                            >
+                                                                Log Out
+                                                            </Link>
+                                                        </li>
+                                                    </ul>
+                                                    :
+                                                    <li>
+                                                        <Link
+                                                            to="/singIn"
+                                                            aria-label="Sign in"
+                                                            title="Sign in"
+                                                            className="inline-flex items-center justify-center w-full h-12 px-6 font-medium tracking-wide text-white transition duration-200 rounded shadow-md bg-purple-400 hover:bg-purple-700 focus:shadow-outline focus:outline-none"
+                                                        >
+                                                            Sign in
+                                                        </Link>
+                                                    </li>
+
+                                                }
                                             </ul>
                                         </nav>
                                     </div>
