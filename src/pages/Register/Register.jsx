@@ -1,8 +1,12 @@
-import React, { useContext, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import singUpPic from '../../assets/hacker-activity-theme_23-2148539946.avif'
 import { AuthContext } from '../../provider/AuthProvider';
 const Register = () => {
+
+    useEffect(() => {
+        document.title = 'Robot Galaxy | Register';
+    }, [])
 
     const [error, setError] = useState('')
     const [success, setSuccess] = useState('')
