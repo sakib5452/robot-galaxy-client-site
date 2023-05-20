@@ -1,6 +1,6 @@
 import React from 'react';
 import { StarIcon } from '@heroicons/react/24/solid'
-const TabSection1 = ({ toy }) => {
+const TabSection3 = ({ toy }) => {
     const { name, img, price, rating, _id } = toy
     return (
         <div>
@@ -51,4 +51,4 @@ const TabSection1 = ({ toy }) => {
     );
 };
 
-export default TabSection1;
+export default TabSection3;
