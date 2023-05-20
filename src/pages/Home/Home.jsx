@@ -4,6 +4,9 @@ import About from '../About/About';
 import BestSell from '../BestSell/BestSell';
 import Gallery from '../Gallery/Gallery';
 
+import TabSection from '../Tab/TabSection';
+
+
 const Home = () => {
     useEffect(() => {
         document.title = 'Robot Galaxy | Home';
@@ -13,6 +16,7 @@ const Home = () => {
             <Banner></Banner>
             <About></About>
             <BestSell></BestSell>
+            <TabSection></TabSection>
             <Gallery></Gallery>
         </div>
     );
