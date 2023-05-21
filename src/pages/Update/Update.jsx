@@ -1,11 +1,11 @@
-import React, { useContext, useEffect } from 'react';
+import React, { useContext } from 'react';
 import { AuthContext } from '../../provider/AuthProvider';
-import Swal from 'sweetalert2'
-const AddToy = () => {
+import { useLoaderData } from 'react-router-dom';
 
+const Update = () => {
+    const loaderUser = useLoaderData()
     const { user } = useContext(AuthContext);
-
-    const handleAddUser = event => {
+    const handleUpdate = event => {
         event.preventDefault();
         const form = event.target;
         const name = form.name.value;
@@ -17,43 +17,32 @@ const AddToy = () => {
         const rating = form.rating.value;
         const detail = form.detail.value;
         const img = form.img.value;
-        const info = { name, price, quantity, category, rating, detail, img, sellerName, email }
+        const infoUpdate = { name, price, quantity, category, rating, detail, img, sellerName, email }
 
 
-        fetch('https://robot-galaxy-server.vercel.app/toys', {
-            method: 'POST',
+
+        fetch(`https://robot-galaxy-server.vercel.app/toys/${loaderUser._id}`, {
+            method: 'PUT',
             headers: {
                 'content-type': 'application/json'
             },
-            body: JSON.stringify(info)
+            body: JSON.stringify(infoUpdate)
+
         })
             .then(res => res.json())
             .then(data => {
                 console.log(data)
-                if (data.insertedId) {
-                    Swal.fire({
-                        icon: 'success',
-                        title: 'Your Data has been saved',
-                        showConfirmButton: false,
-                        timer: 1500
-                    })
-                    form.reset();
+                if (data.modifiedCount > 0) {
+                    alert('user updated successfully')
                 }
             })
-
-
     }
-
-    useEffect(() => {
-        document.title = 'Robot Galaxy | Add A Toy';
-    }, [])
-
     return (
         <div>
 
             <div class="flex h-screen items-center justify-center  mt-72 mb-72">
                 <div class="grid bg-white rounded-lg shadow-xl w-11/12 md:w-9/12 lg:w-1/2">
-                    <form onSubmit={handleAddUser}>
+                    <form onSubmit={handleUpdate}>
                         <div class="flex justify-center py-4">
                             <div class="flex bg-purple-200 rounded-full md:p-4 p-2 border-2 border-purple-300">
                                 <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4"></path></svg>
@@ -131,4 +120,4 @@ const AddToy = () => {
     );
 };
 
-export default AddToy;
+export default Update;

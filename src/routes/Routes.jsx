@@ -11,6 +11,8 @@ import NotFound from '../pages/NotFound/NotFound';
 import Terms from '../pages/Terms/Terms';
 import TabDetails from '../pages/TabDetails/TabDetails';
 import PrivateRoute from './PrivateRoute';
+import ToyDetail from '../pages/ToyDetail/ToyDetail';
+import Update from '../pages/Update/Update';
 
 const router = createBrowserRouter([
     {
@@ -24,7 +26,7 @@ const router = createBrowserRouter([
             {
                 path: "/allToys",
                 element: <AllToys></AllToys>,
-                loader: () => fetch('http://localhost:5000/toys')
+                loader: () => fetch('https://robot-galaxy-server.vercel.app/toys')
             },
             {
                 path: "/myToys",
@@ -53,7 +55,17 @@ const router = createBrowserRouter([
             {
                 path: 'toy/:id',
                 element: <PrivateRoute><TabDetails></TabDetails></PrivateRoute>,
-                loader: ({ params }) => fetch(`http://localhost:5000/toy/${params.id}`)
+                loader: ({ params }) => fetch(`https://robot-galaxy-server.vercel.app/toy/${params.id}`)
+            },
+            {
+                path: 'toys/:id',
+                element: <PrivateRoute> <ToyDetail></ToyDetail></PrivateRoute>,
+                loader: ({ params }) => fetch(`https://robot-galaxy-server.vercel.app/toys/${params.id}`)
+            },
+            {
+                path: 'update/:id',
+                element: <Update></Update>,
+                loader: ({ params }) => fetch(`https://robot-galaxy-server.vercel.app/toys/${params.id}`)
             }
         ]
     },

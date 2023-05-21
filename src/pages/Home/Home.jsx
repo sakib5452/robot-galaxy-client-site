@@ -7,6 +7,7 @@ import Gallery from '../Gallery/Gallery';
 import TabSection from '../Tab/TabSection';
 
 
+
 const Home = () => {
     useEffect(() => {
         document.title = 'Robot Galaxy | Home';

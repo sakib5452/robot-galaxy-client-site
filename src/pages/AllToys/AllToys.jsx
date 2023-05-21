@@ -11,8 +11,8 @@ const AllToys = () => {
         document.title = 'Robot Galaxy | All Toys';
     }, [])
     return (
-        <div>
-            <h2 className="text-5xl">Your bookings: </h2>
+        <div className='mt-10'>
+
             <div className="overflow-x-auto w-full">
                 <table className="table w-full">
                     {/* head */}

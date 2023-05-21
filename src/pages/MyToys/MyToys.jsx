@@ -11,13 +11,31 @@ const MyToys = () => {
     const [toys, setToys] = useState([]);
 
     useEffect(() => {
-        fetch(`http://localhost:5000/toys/${user?.email}`)
+        fetch(`https://robot-galaxy-server.vercel.app/toyss/${user?.email}`)
             .then((res) => res.json())
             .then((data) => {
                 console.log(data);
                 setToys(data);
             });
     }, [user]);
+
+    const handleDelete = id => {
+        const proceed = confirm('Are You sure you want to delete');
+        if (proceed) {
+            fetch(`https://robot-galaxy-server.vercel.app/toys/${id}`, {
+                method: 'DELETE'
+            })
+                .then(res => res.json())
+                .then(data => {
+                    console.log(data);
+                    if (data.deletedCount > 0) {
+                        alert('deleted successful');
+                        const remaining = bookings.filter(booking => booking._id !== id);
+                        setBookings(remaining);
+                    }
+                })
+        }
+    }
 
     return (
         <div>
@@ -44,7 +62,7 @@ const MyToys = () => {
                             toys.map(toys => <MyToyDetail
                                 key={toys._id}
                                 toys={toys}
-
+                                handleDelete={handleDelete}
                             ></MyToyDetail>)
                         }
                     </tbody>
