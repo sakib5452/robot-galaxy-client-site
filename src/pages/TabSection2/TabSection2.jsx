@@ -1,5 +1,6 @@
 import React from 'react';
 import { StarIcon } from '@heroicons/react/24/solid'
+import { Link } from 'react-router-dom';
 const TabSection2 = ({ toy }) => {
     const { name, img, price, rating, _id } = toy
     return (
@@ -35,11 +36,12 @@ const TabSection2 = ({ toy }) => {
                                 <div> <h4 className=' text-xl font-bold'>{rating}</h4></div>
                             </div>
                             <div className="text-center mt-3">
-                                <a
+                                <Link
+                                    to={`/toy/${_id}`}
                                     className="inline-flex items-center justify-center w-full h-12 px-6 font-medium tracking-wide text-white transition duration-200 rounded shadow-md md:w-auto bg-primary hover:bg-purple-700 focus:shadow-outline focus:outline-none"
                                 >
                                     View Details
-                                </a>
+                                </Link>
                             </div>
                         </div>
                     </div>

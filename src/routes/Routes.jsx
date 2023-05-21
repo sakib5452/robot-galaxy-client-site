@@ -9,6 +9,8 @@ import Login from '../pages/Login/Login';
 import Register from '../pages/Register/Register';
 import NotFound from '../pages/NotFound/NotFound';
 import Terms from '../pages/Terms/Terms';
+import TabDetails from '../pages/TabDetails/TabDetails';
+import PrivateRoute from './PrivateRoute';
 
 const router = createBrowserRouter([
     {
@@ -44,13 +46,19 @@ const router = createBrowserRouter([
                 element: <Register></Register>
             },
             {
-                path: "*",
-                element: <NotFound></NotFound>
-            }, {
                 path: 'terms',
                 element: <Terms></Terms>
             },
+            {
+                path: 'toy/:id',
+                element: <PrivateRoute><TabDetails></TabDetails></PrivateRoute>,
+                loader: ({ params }) => fetch(`http://localhost:5000/toy/${params.id}`)
+            }
         ]
+    },
+    {
+        path: "*",
+        element: <NotFound></NotFound>
     }
 
 ])
