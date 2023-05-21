@@ -121,7 +121,7 @@ const AddToy = () => {
 
                         <div class='flex items-center justify-center  md:gap-8 gap-4 pt-5 pb-5'>
                             <button class='w-auto bg-gray-500 hover:bg-gray-700 rounded-lg shadow-xl font-medium text-white px-4 py-2'>Cancel</button>
-                            <button class='w-auto bg-purple-500 hover:bg-purple-700 rounded-lg shadow-xl font-medium text-white px-4 py-2'>Create</button>
+                            <button class='w-auto bg-purple-500 hover:bg-purple-700 rounded-lg shadow-xl font-medium text-white px-4 py-2'>Add Toy</button>
                         </div>
                     </form>
                 </div>

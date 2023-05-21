@@ -10,7 +10,7 @@ const TabSection = () => {
     const [activeTab, setActiveTab] = useState('html');
     const [subCategory, setSubCategory] = useState([]);
     useEffect(() => {
-        fetch('http://localhost:5000/toy')
+        fetch('https://robot-galaxy-server.vercel.app/toy')
             .then(res => res.json())
             .then(data => setSubCategory(data))
     }, []);

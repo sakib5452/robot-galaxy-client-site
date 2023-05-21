@@ -31,7 +31,7 @@ const MyToys = () => {
                     if (data.deletedCount > 0) {
                         alert('deleted successful');
                         const remaining = bookings.filter(booking => booking._id !== id);
-                        setBookings(remaining);
+                        setToys(remaining);
                     }
                 })
         }

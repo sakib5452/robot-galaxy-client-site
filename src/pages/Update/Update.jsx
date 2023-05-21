@@ -1,7 +1,7 @@
 import React, { useContext } from 'react';
 import { AuthContext } from '../../provider/AuthProvider';
 import { useLoaderData } from 'react-router-dom';
-
+import Swal from 'sweetalert2'
 const Update = () => {
     const loaderUser = useLoaderData()
     const { user } = useContext(AuthContext);
@@ -33,7 +33,13 @@ const Update = () => {
             .then(data => {
                 console.log(data)
                 if (data.modifiedCount > 0) {
-                    alert('user updated successfully')
+                    Swal.fire({
+                        icon: 'success',
+                        title: 'Your Data has been Update',
+                        showConfirmButton: false,
+                        timer: 1500
+                    })
+                    form.reset();
                 }
             })
     }
@@ -109,8 +115,7 @@ const Update = () => {
                         </div>
 
                         <div class='flex items-center justify-center  md:gap-8 gap-4 pt-5 pb-5'>
-                            <button class='w-auto bg-gray-500 hover:bg-gray-700 rounded-lg shadow-xl font-medium text-white px-4 py-2'>Cancel</button>
-                            <button class='w-auto bg-purple-500 hover:bg-purple-700 rounded-lg shadow-xl font-medium text-white px-4 py-2'>Create</button>
+                            <button class='w-auto bg-purple-500 hover:bg-purple-700 rounded-lg shadow-xl font-medium text-white px-4 py-2'>Update</button>
                         </div>
                     </form>
                 </div>
