@@ -1,9 +1,13 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useLoaderData } from 'react-router-dom';
 import { StarIcon } from '@heroicons/react/24/solid'
 const TabDetails = () => {
     const toyDetail = useLoaderData()
     const { name, img, price, rating, detail, quantity, subCategory } = toyDetail
+
+    useEffect(() => {
+        document.title = 'Robot Galaxy | Toy Detail';
+    }, [])
 
     return (
         <div>
